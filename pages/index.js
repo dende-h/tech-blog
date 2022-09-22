@@ -10,9 +10,19 @@ export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
   const [selectValue, setSelectValue] = useState("All Posts");
+  const [allPostFlag,setAllPostFlag] = useState(true);
 
+
+  const changeTag = (e) => {
+    setSelectValue(e.target.value)
+    if(e.target.value !== "All Posts"){
+      setAllPostFlag(false)
+    } else {
+      setAllPostFlag(true)
+    }
+  }
   const Tags = posts.map((post) => post.properties.Tags.multi_select[0].name);
-
+  const selectTagPosts = posts.filter((post)=> {return post.properties.Tags.multi_select[0].name === selectValue})
   const set = new Set(Tags);
   const setSelectOption = [...set];
   return (
@@ -43,7 +53,7 @@ export default function Home({ posts }) {
           </p>
         </header>
         <div className={`${styles.cp_ipselect} ${styles.cp_sl02}`}>
-          <select required onChange={(e)=>setSelectValue(e.target.value)} class="test">
+          <select required onChange={(e)=>changeTag(e)} class="test">
             <option value="All Posts">
               All Posts
             </option>
@@ -54,7 +64,31 @@ export default function Home({ posts }) {
         </div>
         <h2 className={styles.heading}>{selectValue}</h2>
         <ol className={styles.posts}>
-          {posts.map((post) => {
+          {allPostFlag ?(posts.map((post) => {
+            const date = new Date(post.last_edited_time).toLocaleString(
+              "en-US",
+              {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              }
+            );
+            return (
+              <li key={post.id} className={styles.post}>
+                <h3 className={styles.postTitle}>
+                  <Link href={`/${post.id}`}>
+                    <a>
+                      <Text text={post.properties.Name.title} />
+                    </a>
+                  </Link>
+                </h3>
+                <p className={styles.postDescription}>{date} 【{post.properties.Tags.multi_select[0].name}】</p>
+                <Link href={`/${post.id}`}>
+                  <a> Read post →</a>
+                </Link>
+              </li>
+            );
+          })):(selectTagPosts.map((post) => {
             const date = new Date(post.last_edited_time).toLocaleString(
               "en-US",
               {
@@ -73,13 +107,13 @@ export default function Home({ posts }) {
                   </Link>
                 </h3>
 
-                <p className={styles.postDescription}>{date}</p>
+                <p className={styles.postDescription}>{date} 【{post.properties.Tags.multi_select[0].name}】</p>
                 <Link href={`/${post.id}`}>
                   <a> Read post →</a>
                 </Link>
               </li>
             );
-          })}
+          })) }
         </ol>
       </main>
     </div>
