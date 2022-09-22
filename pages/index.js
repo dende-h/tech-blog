@@ -9,14 +9,9 @@ import { useState } from "react";
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
-  const [selectValue, setSelectValue] = useState("");
+  const [selectValue, setSelectValue] = useState("All Posts");
 
-  const onChangeTag = (e) => {
-    setSelectValue(e.target.value);
-  };
-  console.log(selectValue);
   const Tags = posts.map((post) => post.properties.Tags.multi_select[0].name);
-  console.log(Tags);
 
   const set = new Set(Tags);
   const setSelectOption = [...set];
@@ -48,16 +43,16 @@ export default function Home({ posts }) {
           </p>
         </header>
         <div className={`${styles.cp_ipselect} ${styles.cp_sl02}`}>
-          <select required onChange={onChangeTag} class="test">
-            <option value="" hidden>
-              select Tags
+          <select required onChange={(e)=>setSelectValue(e.target.value)} class="test">
+            <option value="All Posts">
+              All Posts
             </option>
-            {setSelectOption.map((tag) => {
-              return <option value={tag}>{tag}</option>;
+            {setSelectOption.map((tag,i) => {
+              return <option key={i} value={tag}>{tag}</option>;
             })}
           </select>
         </div>
-        <h2 className={styles.heading}>All Posts</h2>
+        <h2 className={styles.heading}>{selectValue}</h2>
         <ol className={styles.posts}>
           {posts.map((post) => {
             const date = new Date(post.last_edited_time).toLocaleString(
