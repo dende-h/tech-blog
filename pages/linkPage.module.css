@@ -1,12 +1,10 @@
 .grid_parent {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: 100px 100px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
     gap: 20px;
 }
 
 .grid_item {
-    background-color: aqua;
     text-align: center;
 }
 

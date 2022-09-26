@@ -6,7 +6,7 @@ import { commentsArray } from "../lib/comment";
 
 
 
-const illustration = memo(({comments, posts}) =>{
+const Illustrations = memo(({comments, posts}) =>{
 
     
 
@@ -16,7 +16,7 @@ const illustration = memo(({comments, posts}) =>{
         <Menu/>
         <h1>Dende's illustration place</h1>
         <p>Twitterでupしているオリジナルイラストや二次創作イラストを載せています</p>
-        {posts.map((fileName,index)=>{return <ArticleImg key={index} text={comments[index]} imgUrl={`/${fileName}`} /> })
+        {posts.map((fileName,index)=>{return <ArticleImg key={index} text={comments[index]} imgUrl={`/images/${fileName}`} /> })
            }
            </main>
         </>
@@ -27,11 +27,11 @@ const illustration = memo(({comments, posts}) =>{
 
 
 })
-export default illustration
+export default Illustrations
 
 export const getStaticProps = async () => {
     const glob = require('glob');
-    const files = glob.sync( "./public/*.{jpg,png}");
+    const files = glob.sync( "./public/images/*.{jpg,png}");
     const fileNames = files.map((file)=>{ return file.split("/").pop()})
     const comments = commentsArray
     return {

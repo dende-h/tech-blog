@@ -26,7 +26,7 @@ export default function Home({ posts }) {
   const set = new Set(Tags);
   const setSelectOption = [...set];
   return (
-    <div>
+    <>
       <Head>
         <title>dende's novel site</title>
         <link rel="icon" href="/favicon.ico" />
@@ -116,7 +116,7 @@ export default function Home({ posts }) {
           })) }
         </ol>
       </main>
-    </div>
+    </>
   );
 }
 
