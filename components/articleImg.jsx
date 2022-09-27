@@ -9,7 +9,7 @@ const {text , imgUrl ,siteUrl , authorName} = props
     <>
     <article className={styles.article}>
                 <div className={styles.text}>
-                    <figure>{text}</figure>
+                    <p>{text}</p>
                     {siteUrl ? <a href={siteUrl}>{authorName}</a> :null}
                 </div>
                 <div className={styles.logo}>

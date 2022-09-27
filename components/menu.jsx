@@ -14,7 +14,7 @@ const Menu = memo(() => {
             </li>
             <li>
                 <Link href="/giftArt">
-                    <a>貰ったイラスト</a>
+                    <a>GiftArt</a>
                 </Link>
             </li>
             <li>
