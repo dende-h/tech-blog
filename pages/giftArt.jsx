@@ -28,11 +28,11 @@ export default GiftArt
 export const getStaticProps = async () => {
    const fs = require("fs");
    const authorName = fs.readFileSync("./public/images/authorName.txt", "utf-8")
-   const authorNames = authorName.toString().split('\r\n')
+   const authorNames = authorName.toString().split(',')
    const comment = fs.readFileSync("./public/images/comment.txt", "utf-8")
-   const comments = comment.toString().split('\r\n')
+   const comments = comment.toString().split(',')
    const url = fs.readFileSync("./public/images/url.txt", "utf-8")
-   const urls = url.toString().split('\r\n')
+   const urls = url.toString().split(',')
     const glob = require('glob');
     const files = glob.sync( "./public/images/*.{jpg,png}");
     const fileNames = files.map((file)=>{ return file.split("/").pop()})

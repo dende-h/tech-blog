@@ -28,8 +28,7 @@ export default illustration
 export const getStaticProps = async () => {
   const fs = require("fs");
   const comment = fs.readFileSync("./public/dendeIllust/myComment.txt", "utf-8")
-  const comments = comment.toString().split('\r\n')
-  console.log(comments)
+  const comments = comment.toString().split(',')
     const glob = require('glob');
     const files = glob.sync( "./public/dendeIllust/*.{jpg,png}");
     const fileNames = files.map((file)=>{ return file.split("/").pop()})

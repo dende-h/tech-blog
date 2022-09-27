@@ -27,9 +27,9 @@ export default linkPage
 export const getStaticProps = async () => {
   const fs = require("fs");
   const comment = fs.readFileSync("./public/gridThumbnail/gridComment.txt", "utf-8")
-  const text = comment.toString().split('\r\n')
+  const text = comment.toString().split(',')
   const url = fs.readFileSync("./public/images/url.txt", "utf-8")
-  const siteUrl = url.toString().split('\r\n')
+  const siteUrl = url.toString().split(',')
     const glob = require('glob');
     const files = glob.sync( "./public/gridThumbnail/*.{jpg,png}");
     const fileNames = files.map((file)=>{ return file.split("/").pop()})
