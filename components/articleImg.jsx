@@ -13,7 +13,7 @@ const {text , imgUrl ,siteUrl , authorName} = props
                     {siteUrl ? <a href={siteUrl}>{authorName}</a> :null}
                 </div>
                 <div className={styles.logo}>
-                    <Image src={imgUrl} width={600} height={600} objectFit="contain" ></Image>
+                    <Image src={imgUrl} width={600} height={600} objectFit="contain"  loading={"lazy"} ></Image>
                 </div>
     </article>
         

@@ -8,7 +8,7 @@ const {text , imgUrl,siteUrl } = props
     return( 
     <>
     <div className={styles.grid_item}>
-                <Image src={imgUrl} width={"350px"} height={"200px"} objectFit="contain" />
+                <Image src={imgUrl} width={"350px"} height={"200px"} objectFit="contain"  loading={"lazy"} />
                 <a href={siteUrl}>{text}</a>
      </div>
         
