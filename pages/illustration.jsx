@@ -2,7 +2,7 @@ import { memo } from "react";
 import Menu from "../components/menu";
 import ArticleImg from "../components/articleImg";
 import styles from "./illustration.module.css";
-import { commentsArray } from "../lib/comment";
+
 
 
 
@@ -26,10 +26,12 @@ const illustration = memo(({comments, posts}) =>{
 export default illustration
 
 export const getStaticProps = async () => {
+  const fs = require("fs");
+  const comment = fs.readFileSync("./public/dendeIllust/myComment.txt", "utf-8")
+  const comments = comment.toString().split('\r\n')
     const glob = require('glob');
     const files = glob.sync( "./public/dendeIllust/*.{jpg,png}");
     const fileNames = files.map((file)=>{ return file.split("/").pop()})
-    const comments = commentsArray
     return {
       props: {
         comments:comments,

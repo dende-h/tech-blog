@@ -2,11 +2,10 @@ import { memo } from "react";
 import Menu from "../components/menu";
 import ArticleImg from "../components/articleImg";
 import styles from "./illustration.module.css";
-import { giftCommentsArray, urlArray } from "../lib/giftIllustComment";
 
 
 
-const Illustrations = memo(({comments, posts , url}) =>{
+const GiftArt = memo(({comments, posts , urls , authorNames}) =>{
 
     
 
@@ -16,29 +15,32 @@ const Illustrations = memo(({comments, posts , url}) =>{
         <Menu/>
         <h1>Clip art of a gift</h1>
         <p>頂き物や作者様の許可を頂いたイラストを載せています</p>
-          {posts.map((fileName,index)=>{return <ArticleImg key={index} text={comments[index]} imgUrl={`/images/${fileName}`} siteUrl={url[index]} /> })}
+          {posts.map((fileName,index)=>
+            {return <ArticleImg key={index} text={comments[index]} imgUrl={`/images/${fileName}`} siteUrl={urls[index]} authorName={authorNames[index]}/> })}
         </main>
         </>
     )
 
 
 })
-export default Illustrations
+export default GiftArt
 
 export const getStaticProps = async () => {
    const fs = require("fs");
-   fs.readFile("./public/sample.txt", "utf-8", (err, data) => {
-     if (err) throw err;
-     console.log(data);
-    });
+   const authorName = fs.readFileSync("./public/images/authorName.txt", "utf-8")
+   const authorNames = authorName.toString().split('\r\n')
+   const comment = fs.readFileSync("./public/images/comment.txt", "utf-8")
+   const comments = comment.toString().split('\r\n')
+   const url = fs.readFileSync("./public/images/url.txt", "utf-8")
+   const urls = url.toString().split('\r\n')
     const glob = require('glob');
     const files = glob.sync( "./public/images/*.{jpg,png}");
     const fileNames = files.map((file)=>{ return file.split("/").pop()})
-    const comments = giftCommentsArray
-    const url = urlArray
+    
     return {
       props: {
-        url:url,
+        authorNames:authorNames,
+        urls:urls,
         comments:comments,
         posts: fileNames,
       },

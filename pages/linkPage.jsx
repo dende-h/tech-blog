@@ -1,9 +1,8 @@
 import { memo } from "react";
 import Menu from "../components/menu";
 import styles from "./linkPage.module.css";
-import Image from 'next/image'
 import GridItem from "../components/gridItem";
-import { siteUrl, siteUrlArray, textArray } from "../lib/gridText";
+
 
 const linkPage = memo(({siteUrl, text, posts}) =>{
 
@@ -26,11 +25,14 @@ const linkPage = memo(({siteUrl, text, posts}) =>{
 export default linkPage
 
 export const getStaticProps = async () => {
+  const fs = require("fs");
+  const comment = fs.readFileSync("./public/gridThumbnail/gridComment.txt", "utf-8")
+  const text = comment.toString().split('\r\n')
+  const url = fs.readFileSync("./public/images/url.txt", "utf-8")
+  const siteUrl = url.toString().split('\r\n')
     const glob = require('glob');
     const files = glob.sync( "./public/gridThumbnail/*.{jpg,png}");
     const fileNames = files.map((file)=>{ return file.split("/").pop()})
-    const text = textArray
-    const siteUrl = siteUrlArray
     return {
       props: {
         siteUrl:siteUrl,
