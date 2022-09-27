@@ -53,7 +53,7 @@ export default function Home({ posts }) {
           </p>
         </header>
         <div className={`${styles.cp_ipselect} ${styles.cp_sl02}`}>
-          <select required onChange={(e)=>changeTag(e)} class="test">
+          <select required onChange={(e)=>changeTag(e)} className="test">
             <option value="All Posts">
               All Posts
             </option>
