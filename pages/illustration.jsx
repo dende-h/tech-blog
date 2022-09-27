@@ -16,7 +16,7 @@ const illustration = memo(({comments, posts}) =>{
           <Menu/>
           <h1>Dende's illustration place</h1>
           <p>Twitterでupしている管理人自作のオリジナルイラストや二次創作イラストを載せています</p>
-          {posts.map((fileName,index)=>{return <ArticleImg key={index} text={comments[index]} imgUrl={`/dendeIllust/${fileName}`} /> })}
+          {posts.map((fileName,index)=>{return <ArticleImg key={fileName} text={comments[index]} imgUrl={`/dendeIllust/${fileName}`} /> })}
         </main>
         </>
     )
