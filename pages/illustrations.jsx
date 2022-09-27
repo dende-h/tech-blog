@@ -26,6 +26,11 @@ const Illustrations = memo(({comments, posts , url}) =>{
 export default Illustrations
 
 export const getStaticProps = async () => {
+   const fs = require("fs");
+   fs.readFile("./public/sample.txt", "utf-8", (err, data) => {
+     if (err) throw err;
+     console.log(data);
+    });
     const glob = require('glob');
     const files = glob.sync( "./public/images/*.{jpg,png}");
     const fileNames = files.map((file)=>{ return file.split("/").pop()})
