@@ -37,6 +37,7 @@
     opacity: 0.6;
     letter-spacing: 0.5px;
   }
+
   
   @media (prefers-color-scheme: dark) {
     .heading {
