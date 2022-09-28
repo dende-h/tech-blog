@@ -20,9 +20,10 @@
 }
 
 .name {
+  text-align: center;
   font-size: 36px;
+  background: linear-gradient(transparent 90%, #FFFF00 0%);
 }
-
 .back {
   display: inline-block;
   margin-bottom: 20px;
