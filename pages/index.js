@@ -3,7 +3,6 @@ import Link from "next/link";
 import { getDatabase } from "../lib/notion";
 import { Text } from "./[id].js";
 import styles from "./index.module.css";
-import Menu from "../components/menu";
 import { useState } from "react";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
@@ -12,7 +11,8 @@ export default function Home({ posts }) {
   const [selectValue, setSelectValue] = useState("All Posts");
   const [allPostFlag,setAllPostFlag] = useState(true);
 
-
+  const AllPosts = posts.filter((post) => {return post.properties.Published.checkbox === true})
+ 
   const changeTag = (e) => {
     setSelectValue(e.target.value)
     if(e.target.value !== "All Posts"){
@@ -21,8 +21,8 @@ export default function Home({ posts }) {
       setAllPostFlag(true)
     }
   }
-  const Tags = posts.map((post) => post.properties.Tags.multi_select[0].name);
-  const selectTagPosts = posts.filter((post)=> {return post.properties.Tags.multi_select[0].name === selectValue})
+  const Tags = AllPosts.map((post) => post.properties.Tags.multi_select[0].name);
+  const selectTagPosts = AllPosts.filter((post)=> {return post.properties.Tags.multi_select[0].name === selectValue})
   const set = new Set(Tags);
   const setSelectOption = [...set];
   return (
@@ -34,7 +34,6 @@ export default function Home({ posts }) {
 
       <main className={styles.container}>
         <header className={styles.header}>
-          <Menu />
           <h1>DenDe's Novel site</h1>
           <p>
             のんびり趣味で綴っている私小説サイトです。山梨県でSEをしながらのんびり不定期で更新中。基本的に短編中心で書いています。このサイトはこちらの
@@ -64,7 +63,7 @@ export default function Home({ posts }) {
         </div>
         <h2 className={styles.heading}>{selectValue}</h2>
         <ol className={styles.posts}>
-          {allPostFlag ?(posts.map((post) => {
+          {allPostFlag ?(AllPosts.map((post) => {
             const date = new Date(post.last_edited_time).toLocaleString(
               "en-US",
               {
