@@ -31,7 +31,7 @@ export default function Home({ posts }) {
   return (
     <>
       <Head>
-        <title>dende's novel site</title>
+        <title>田舎でのんびり書くテックブログ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
