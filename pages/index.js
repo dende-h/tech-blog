@@ -10,7 +10,8 @@ export const databaseId = process.env.NOTION_DATABASE_ID;
 export default function Home({ posts }) {
   const [selectValue, setSelectValue] = useState("All Posts");
   const [allPostFlag,setAllPostFlag] = useState(true);
-
+  const [showFlag , setShowFlag] = useState(false);
+  const myName = (showFlag ? "close" : "dende")
   const AllPosts = posts.filter((post) => {return post.properties.Published.checkbox === true})
  
   const changeTag = (e) => {
@@ -25,6 +26,8 @@ export default function Home({ posts }) {
   const selectTagPosts = AllPosts.filter((post)=> {return post.properties.Tags.multi_select[0].name === selectValue})
   const set = new Set(Tags);
   const setSelectOption = [...set];
+
+
   return (
     <>
       <Head>
@@ -34,21 +37,38 @@ export default function Home({ posts }) {
 
       <main className={styles.container}>
         <header className={styles.header}>
-          <h1>DenDe's Novel site</h1>
-          <p>
-            のんびり趣味で綴っている私小説サイトです。山梨県でSEをしながらのんびり不定期で更新中。基本的に短編中心で書いています。このサイトはこちらの
+          <h1>田舎でのんびり書くテックブログ</h1>
+          <div>
+            <h4>ここは管理人の<text className={styles.text} onClick={()=>setShowFlag(!showFlag)}>{myName}</text>が普段の学習記録を公開しているテックブログです。</h4>
+            {showFlag ? <p>《自己紹介》<br/>2021年5月34歳～プログラミング学習をはじめました。主な学習言語はJavaとJavaScript,TypeScriptです。
+            WordPressようにPHPや、インフラ周りはAWSの学習に取り組もうとしているところです。<br/>
+            2022年7月35歳でなんのご縁か触ったこともないCOBOLで社会福祉法人の会計や給食、入所者管理などの
+            システムを提供している会社で開発のSEとして働いています。<br/>
+            新規開発はなく保守とバージョンアップなので、のんびりしております。</p> :null}       
+            <p>このブログはNext.jsで開発されており
             <a href="https://github.com/samuelkraft/notion-blog-nextjs">
               notion-blog-nextjs
             </a>
-            を使わせて頂いています。それにしてもNotionで執筆できるのがとても快適です。ありがとうございます。
+            をカスタムして使わせて頂いています。<br/>
+            普段のメモがそのまま公開できるのでとても快適です。<br/>
+            ありがとうございます。
+            </p>
+            <p>プログラミング学習&コミュニティとして<a href="https://raise-tech.net/">RaiseTech</a> を利用しています。
+            無期限サポートと活発なコミュニティ、熱心な講師陣がおります。
+            これから転職を目指す方、独学で挫折した方、独りでの学習に挫けそうな方は特におすすめです。
+            </p>
+          </div>
+          <p>
+            エンジニア学習初めてから学習記録をツイートしています→
+            <a href="https://twitter.com/dende49592814">学習記録Twitter</a>
           </p>
           <p>
-            コメント感想などはコチラ→
+            同じ記事をQiitaにもあげています→
+            <a href="https://qiita.com/dende-h">Qiitaマイページ</a>
+          </p>
+          <p>
+            趣味で小説書いたり、イラスト描いたりしています。うまくはないです→
             <a href="https://twitter.com/dendeiriamaka1">dende趣味Twitter</a>
-          </p>
-          <p>
-            エンジニアに興味がある人はコチラ→
-            <a href="https://twitter.com/dendeiriamaka1">学習記録Twitter</a>
           </p>
         </header>
         <div className={`${styles.cp_ipselect} ${styles.cp_sl02}`}>

@@ -1,11 +1,15 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import Head from "next/head";
 import { getDatabase, getPage, getBlocks } from "../lib/notion";
 import Link from "next/link";
 import { databaseId } from "./index.js";
 import styles from "./post.module.css";
+import Prism from "prismjs"
+
 
 export const Text = ({ text }) => {
+  
+
   if (!text) {
     return null;
   }
@@ -34,6 +38,7 @@ export const Text = ({ text }) => {
 const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
+  
 
   switch (type) {
     case "paragraph":
@@ -104,11 +109,11 @@ const renderBlock = (block) => {
     case "quote":
       return <blockquote key={id}>{value.text[0].plain_text}</blockquote>;
     case "code":
+      
+      const language = block.code.language.toLowerCase()
       return (
         <pre className={styles.pre}>
-          <code className={styles.code_block} key={id}>
-            {value.text[0].plain_text}
-          </code>
+          <code className={`language-${language}`} key={id} >{value.text[0].plain_text}</code>
         </pre>
       );
     case "file":
@@ -136,6 +141,7 @@ const renderBlock = (block) => {
 };
 
 export default function Post({ page, blocks }) {
+   useEffect(()=>{Prism.highlightAll();},[]) 
   if (!page || !blocks) {
     return <div />;
   }
