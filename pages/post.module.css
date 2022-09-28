@@ -5,10 +5,6 @@
   line-height: 1.5;
 }
 
-.container h1 {
-  font-size: 32px;
-}
-
 .container img {
   width: 100%;
   height: auto;
@@ -88,6 +84,24 @@
 
 .underline {
   text-decoration: underline;
+}
+
+.h1b {
+  font-size: xx-large;
+  border-bottom: double;
+  border-color:#817e7e;
+  border-width:3px;
+}
+
+.h2b {
+  font-size: x-large;
+  border-bottom:solid;
+  border-color:#817e7e;
+  border-width:2px;
+}
+
+.h3b {
+  font-size: large;
 }
 
 @media (prefers-color-scheme: dark) {
