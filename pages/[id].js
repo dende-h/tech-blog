@@ -68,9 +68,14 @@ const renderBlock = (block) => {
     case "bulleted_list_item":
     case "numbered_list_item":
       return (
-        <li>
-          <Text text={value.text} />
-        </li>
+        <ul>
+          <li>
+            <Text text={value.text} />
+          </li>
+          <ul>
+          {value.children ? value.children.map((child)=>{return <li key={child}>{child.numbered_list_item.text[0].plain_text}</li>}):null}
+          </ul>
+        </ul>
       );
     case "to_do":
       return (

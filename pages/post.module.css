@@ -103,6 +103,7 @@
 
 .h3b {
   font-size: large;
+  font-weight: bold;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -117,4 +118,8 @@
   .pre {
     background-color: rgb(15, 8, 28);
   }
+}
+.name {
+  text-align: center;
+  font-size: 36px;
 }
