@@ -161,7 +161,6 @@ const renderBlock = (block) => {
 export default function Post({ page, blocks }) {
   const router = useRouter();
   const asPath = router.asPath
-  const metaPageDescription = blocks.filter((block)=>{ return block.type ==="paragraph"})[0].paragraph.text.map((text)=>{return text.plain_text}).join("")
    useEffect(()=>{Prism.highlightAll();},[]) 
   if (!page || !blocks) {
     return <div />;
@@ -170,7 +169,7 @@ export default function Post({ page, blocks }) {
     <div>
       <Seo
         pageTitle={page.properties.Name.title[0].plain_text}
-        pageDescription={metaPageDescription?metaPageDescription:page.properties.Name.title[0].plain_text}
+        pageDescription={blocks?blocks.filter((block)=>{ return block.type ==="paragraph"})[0].paragraph.text.map((text)=>{return text.plain_text}).join(""):page.properties.Name.title[0].plain_text}
         pagePath={`https://tech-blog-efcg.vercel.app/${asPath}`}
         pageImg="/24510976_l.jpg"
       />
