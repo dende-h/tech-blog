@@ -1,10 +1,9 @@
-import Head from "next/head";
 import Link from "next/link";
 import { getDatabase } from "../lib/notion";
-import { Text } from "./[id].js";
+import { Text } from "../components/Text";
 import styles from "./index.module.css";
 import { useState } from "react";
-import Seo from "../compornets/Seo";
+import Seo from "../components/Seo";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 

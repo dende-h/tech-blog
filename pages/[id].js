@@ -4,44 +4,15 @@ import Link from "next/link";
 import { databaseId } from "./index.js";
 import styles from "./post.module.css";
 import Prism from "prismjs"
-import Seo from "../compornets/Seo";
+import Seo from "../components/Seo";
 import { useRouter } from "next/router";
-
-
-export const Text = ({ text }) => {
-  
-
-  if (!text) {
-    return null;
-  }
-  return text.map((value) => {
-    const {
-      annotations: { bold, code, color, italic, strikethrough, underline },
-      text,
-    } = value;
-    return (
-      <span
-        className={[
-          bold ? styles.bold : "",
-          code ? styles.code : "",
-          italic ? styles.italic : "",
-          strikethrough ? styles.strikethrough : "",
-          underline ? styles.underline : "",
-        ].join(" ")}
-        style={color !== "default" ? { color } : {}}
-      >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
-      </span>
-    );
-  });
-};
+import { Text } from "../components/Text";
 
 
 const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
   
-
   switch (type) {
     case "paragraph":
       return (
