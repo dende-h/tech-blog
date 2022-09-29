@@ -4,6 +4,7 @@ import { getDatabase } from "../lib/notion";
 import { Text } from "./[id].js";
 import styles from "./index.module.css";
 import { useState } from "react";
+import Seo from "../compornets/Seo";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -30,10 +31,10 @@ export default function Home({ posts }) {
 
   return (
     <>
-      <Head>
-        <title>田舎でのんびり書くテックブログ</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo 
+        pagePath="https://tech-blog-efcg.vercel.app/"
+        pageImg="/24510976_l.jpg"
+      />
 
       <main className={styles.container}>
         <header className={styles.header}>
