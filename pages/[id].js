@@ -1,10 +1,11 @@
 import { Fragment, useEffect } from "react";
-import Head from "next/head";
 import { getDatabase, getPage, getBlocks } from "../lib/notion";
 import Link from "next/link";
 import { databaseId } from "./index.js";
 import styles from "./post.module.css";
 import Prism from "prismjs"
+import Seo from "../compornets/Seo";
+import { useRouter } from "next/router";
 
 
 export const Text = ({ text }) => {
@@ -34,6 +35,7 @@ export const Text = ({ text }) => {
     );
   });
 };
+
 
 const renderBlock = (block) => {
   const { type, id } = block;
@@ -157,16 +159,21 @@ const renderBlock = (block) => {
 };
 
 export default function Post({ page, blocks }) {
+  const router = useRouter();
+  const asPath = router.asPath
+  const metaPageDescription = blocks.filter((block)=>{ return block.type ==="paragraph"})[0].paragraph.text.map((text)=>{return text.plain_text}).join("")
    useEffect(()=>{Prism.highlightAll();},[]) 
   if (!page || !blocks) {
     return <div />;
   }
   return (
     <div>
-      <Head>
-        <title>{page.properties.Name.title[0].plain_text}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        pageTitle={page.properties.Name.title[0].plain_text}
+        pageDescription={metaPageDescription?metaPageDescription:page.properties.Name.title[0].plain_text}
+        pagePath={`https://tech-blog-efcg.vercel.app/${asPath}`}
+        pageImg="/24510976_l.jpg"
+      />
 
       <article className={styles.container}>
         <h1 className={styles.name}>
