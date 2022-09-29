@@ -66,14 +66,15 @@ const renderBlock = (block) => {
         </h3>
       );
     case "bulleted_list_item":
+
       return (
         <ul>
           <li>
             <Text text={value.text} />
           </li>
-          <ul>
-          {value.children ? value.children.map((child)=>{return <li key={child}>{child.bulleted_list_item.text[0].plain_text}</li>}):null}
-          </ul>
+          {value.children?.map((block) => (
+            <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+          ))}
         </ul>
       );
     case "numbered_list_item":
@@ -82,9 +83,9 @@ const renderBlock = (block) => {
           <li>
             <Text text={value.text} />
           </li>
-          <ul>
-          {value.children ? value.children.map((child)=>{return <li key={child}>{child.numbered_list_item.text[0].plain_text}</li>}):null}
-          </ul>
+          {value.children?.map((block) => (
+            <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+          ))}
         </ul>
       );
     case "to_do":
