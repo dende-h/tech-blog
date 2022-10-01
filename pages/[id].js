@@ -6,7 +6,7 @@ import styles from "./post.module.css";
 import Prism from "prismjs"
 import Seo from "../components/Seo";
 import { useRouter } from "next/router";
-import { Text } from "../components/Text";
+import { TextBlocks } from "../components/TextBlocks.jsx";
 
 
 const renderBlock = (block) => {
@@ -17,25 +17,25 @@ const renderBlock = (block) => {
     case "paragraph":
       return (
         <p>
-          <Text text={value.text} />
+          <TextBlocks text={value.text} />
         </p>
       );
     case "heading_1":
       return (
         <h1 className={styles.h1b}>
-          <Text text={value.text} />
+          <TextBlocks text={value.text} />
         </h1>
       );
     case "heading_2":
       return (
         <h2 className={styles.h2b}>
-          <Text text={value.text} />
+          <TextBlocks text={value.text} />
         </h2>
       );
     case "heading_3":
       return (
         <h3 className={styles.h3b}>
-          <Text text={value.text} />
+          <TextBlocks text={value.text} />
         </h3>
       );
     case "bulleted_list_item":
@@ -43,7 +43,7 @@ const renderBlock = (block) => {
       return (
         <ul>
           <li>
-            <Text text={value.text} />
+            <TextBlocks text={value.text} />
           </li>
           {value.children?.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
@@ -54,7 +54,7 @@ const renderBlock = (block) => {
       return (
         <ul>
           <li>
-            <Text text={value.text} />
+            <TextBlocks text={value.text} />
           </li>
           {value.children?.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
@@ -66,7 +66,7 @@ const renderBlock = (block) => {
         <div>
           <label htmlFor={id}>
             <input type="checkbox" id={id} defaultChecked={value.checked} />{" "}
-            <Text text={value.text} />
+            <TextBlocks text={value.text} />
           </label>
         </div>
       );
@@ -74,7 +74,7 @@ const renderBlock = (block) => {
       return (
         <details>
           <summary>
-            <Text text={value.text} />
+            <TextBlocks text={value.text} />
           </summary>
           {value.children?.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
@@ -154,7 +154,7 @@ export default function Post({ page, blocks }) {
 
       <article className={styles.container}>
         <h1 className={styles.name}>
-          <Text text={page.properties.Name.title} />
+          <TextBlocks text={page.properties.Name.title} />
         </h1>
         <section>
           {blocks.map((block) => (
