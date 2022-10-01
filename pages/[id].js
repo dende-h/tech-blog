@@ -138,7 +138,7 @@ export default function Post({ page, blocks }) {
   const router = useRouter();
   const asPath = router.asPath
    useEffect(()=>{Prism.highlightAll();
-                  if(blocks){
+                  if(blocks.type === "paragraph"){
                   setMetaDes(metaDescription(blocks))}},[]) 
   if (!page || !blocks) {
     return <div />;
