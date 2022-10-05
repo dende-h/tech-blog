@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getDatabase } from "../lib/notion";
-import { Text } from "../components/Text";
+import { TextBlocks } from "../components/TextBlocks";
 import styles from "./index.module.css";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Seo from "../components/Seo";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
@@ -39,7 +39,7 @@ export default function Home({ posts }) {
         <header className={styles.header}>
           <h1>田舎でのんびり書くテックブログ</h1>
           <div>
-            <h4>ここは管理人の<text className={styles.text} onClick={()=>setShowFlag(!showFlag)}>{myName}</text>が普段の学習記録を公開しているテックブログです。</h4>
+            <h4>ここは管理人の<a className={styles.text} onClick={()=>setShowFlag(!showFlag)}>{myName}</a>が普段の学習記録を公開しているテックブログです。</h4>
             {showFlag ? <p>《自己紹介》<br/>2021年5月34歳～プログラミング学習をはじめました。主な学習言語はJavaとJavaScript,TypeScriptです。
             WordPressようにPHPや、インフラ周りはAWSの学習に取り組もうとしているところです。<br/>
             2022年7月35歳でなんのご縁か触ったこともないCOBOLで社会福祉法人の会計や給食、入所者管理などの
@@ -97,7 +97,7 @@ export default function Home({ posts }) {
                 <h3 className={styles.postTitle}>
                   <Link href={`/${post.id}`}>
                     <a>
-                      <Text text={post.properties.Name.title} />
+                      <TextBlocks text={post.properties.Name.title} />
                     </a>
                   </Link>
                 </h3>
@@ -121,7 +121,7 @@ export default function Home({ posts }) {
                 <h3 className={styles.postTitle}>
                   <Link href={`/${post.id}`}>
                     <a>
-                      <Text text={post.properties.Name.title} />
+                      <TextBlocks text={post.properties.Name.title} />
                     </a>
                   </Link>
                 </h3>
