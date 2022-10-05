@@ -2,5 +2,5 @@ module.exports = {
     siteUrl: 'https://tech-blog-efcg.vercel.app/',
     generateRobotsTxt: true,
     sitemapSize: 7000,
-    outDir: './sitemap',
+    outDir,
   };
