@@ -39,12 +39,7 @@ export default function Home({ posts }) {
         <header className={styles.header}>
           <h1>田舎でのんびり書くテックブログ</h1>
           <div>
-            <h4>ここは管理人の<a className={styles.text} onClick={()=>setShowFlag(!showFlag)}>{myName}</a>が普段の学習記録を公開しているテックブログです。</h4>
-            {showFlag ? <p>《自己紹介》<br/>2021年5月34歳～プログラミング学習をはじめました。主な学習言語はJavaとJavaScript,TypeScriptです。
-            WordPressようにPHPや、インフラ周りはAWSの学習に取り組もうとしているところです。<br/>
-            2022年7月35歳でなんのご縁か触ったこともないCOBOLで社会福祉法人の会計や給食、入所者管理などの
-            システムを提供している会社で開発のSEとして働いています。<br/>
-            新規開発はなく保守とバージョンアップなので、のんびりしております。</p> :null}       
+            <h4>ここは管理人の『でんで』が普段の学習記録を公開しているテックブログです。</h4>   
             <p>このブログはNext.jsで開発されており
             <a href="https://github.com/samuelkraft/notion-blog-nextjs">
               notion-blog-nextjs
@@ -53,21 +48,17 @@ export default function Home({ posts }) {
             普段のメモがそのまま公開できるのでとても快適です。<br/>
             ありがとうございます。
             </p>
-            <p>プログラミング学習&コミュニティとして<a href="https://raise-tech.net/">RaiseTech</a> を利用しています。
-            無期限サポートと活発なコミュニティ、熱心な講師陣がおります。
-            これから転職を目指す方、独学で挫折した方、独りでの学習に挫けそうな方は特におすすめです。
-            </p>
           </div>
           <p>
-            エンジニア学習初めてから学習記録をツイートしています→
+            情報キャッチ用のTwitter。たまにツイートしています→
             <a href="https://twitter.com/dende49592814">学習記録Twitter</a>
           </p>
           <p>
-            同じ記事をQiitaにもあげています→
+           Qiitaにも記事あげています→
             <a href="https://qiita.com/dende-h">Qiitaマイページ</a>
           </p>
           <p>
-            趣味で小説書いたり、イラスト描いたりしています。うまくはないです→
+            趣味用のTwitter。たまにイラスト書いたり→
             <a href="https://twitter.com/dendeiriamaka1">dende趣味Twitter</a>
           </p>
         </header>
